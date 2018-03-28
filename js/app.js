@@ -239,3 +239,29 @@ const restart = document.querySelector('.restart');
 restart.addEventListener('click', function(){
   restartGame();
 });
+
+/**
+* @description show congratulation message using sweetalert2 library
+* - if user want to play again, call restartGame funciton
+* @constructor
+*/
+function congratulationMessage()
+{
+    // use from sweetalert2 library
+    swal({
+        type: 'success',
+        title: 'Congratulations! You won!',
+        html:
+        `<p>With ${counter} moves and ${stars} stars</p>
+
+        </p>Woooooo!</p>`,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Play again!'
+    }
+    ).then((result) => {
+        if (result.value) {
+            restartGame();
+
+        }
+    });
+}
