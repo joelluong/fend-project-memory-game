@@ -32,7 +32,20 @@ for (const card of cards){
     iElementCards.push(card.firstElementChild);
 }
 
+function shuffleCards ()
+{
+        deck.innerHTML='';
+        iElementCards = shuffle(iElementCards);
+        for (let i=0;i<cards.length;i++){
+                cards[i].className = 'card';
+                cards[i].appendChild(iElementCards[i]);
+                deck.appendChild(cards[i]);
+        }
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+   shuffleCards ();
+}, false);
 
 /*
  * set up the event listener for a card. If a card is clicked:
