@@ -11,6 +11,12 @@
  const openClassName="open";
  const showClassName="show";
 
+ /*
+  * Variable for the opened cards list
+  */
+ let openedCardList = new Array();
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
