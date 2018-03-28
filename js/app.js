@@ -27,7 +27,6 @@
  /*
   * Declare variables for counter
   */
- const counterSpan = document.querySelector('.moves');
  let counter=0;
 
 
@@ -138,6 +137,8 @@ function compareSimilarity (pCard)
   openedCardList.push(pCard);      // add to the list
   if (openedCardList.length >= 2){    //  the list of open card has another list
     counter++;  // increment move counter
+
+    const counterSpan = document.querySelector('.moves');
     counterSpan.textContent = counter;      //update counter
 
     // check similarity between two cards
