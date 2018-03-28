@@ -20,37 +20,37 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 /* adding i elements into an array */
 for (const card of cards){
-    iElementCards.push(card.firstElementChild);
+  iElementCards.push(card.firstElementChild);
 }
 
 function shuffleCards ()
 {
-        deck.innerHTML='';
-        iElementCards = shuffle(iElementCards);
-        for (let i=0;i<cards.length;i++){
-                cards[i].className = 'card';
-                cards[i].appendChild(iElementCards[i]);
-                deck.appendChild(cards[i]);
-        }
+  deck.innerHTML='';
+  iElementCards = shuffle(iElementCards);
+  for (let i=0;i<cards.length;i++){
+          cards[i].className = 'card';
+          cards[i].appendChild(iElementCards[i]);
+          deck.appendChild(cards[i]);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-   shuffleCards ();
+  shuffleCards ();
 }, false);
 
 /*
@@ -65,11 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
  */
  function openCard (card)
  {
-         card.classList.add(openClassName);
-         card.classList.add(showClassName);
+   card.classList.add(openClassName);
+   card.classList.add(showClassName);
  };
 
 
 var closeCard = function (card){
-        card.className = "card";
+  card.className = "card";
 };
+
+for (let card of cards){
+  card.addEventListener('click', function(){
+    openCard(card);
+  });
+}
