@@ -68,3 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
          card.classList.add(openClassName);
          card.classList.add(showClassName);
  };
+
+
+var closeCard = function (card){
+        card.className = "card";
+};
