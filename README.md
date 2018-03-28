@@ -3,18 +3,24 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Dependencies](#dependencies)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This project is Memory Game which is an assignment for students from Udacity.
 
-To get started, open `js/app.js` and start building out the app's functionality
+This will require modifying the HTML and CSS files, but primarily the JavaScript file `js/app.js`.
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+## Dependencies
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+The project is cooperated with two library.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+The first library is sweetalert2
+
+For details, check out [Sweet Alert 2](https://sweetalert2.github.io/).
+
+Another is Animate.css
+
+For details, check out [Animate.css](https://github.com/daneden/animate.css).
