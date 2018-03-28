@@ -221,7 +221,7 @@ function restartGame () {
   stars = 3;
   counterSpan.textContent = counter;
   displayStar(stars);
-
+  resetTimer();
 }
 
 
@@ -313,11 +313,33 @@ function resetTimer(){
 }
 
 /**
+* @description Show pop up start game
+* @constructor
+*/
+function startGamePopup()
+{
+  // use sweetalert2 library
+  swal({
+      type: 'info',
+      title: 'Welcome to Matching Game',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Start'
+  }
+  ).then((result) => {
+      if (result.value) {
+          active = true;
+          startTimer();
+      }
+  });
+}
+
+/**
 * Event listener after the page loaed
 *   - Shuffle cards
 */
 document.addEventListener('DOMContentLoaded', function() {
   shuffleCards ();
+  startGamePopup();
 }, false);
 
 /* the restart button allow the player to reset the game */
