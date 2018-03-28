@@ -33,11 +33,19 @@ let stars = 3;
  *   - add each card's HTML to the page
  */
 
- /*
-  * Declare variables for counter
-  */
- let counter=0;
- const counterSpan = document.querySelector('.moves');
+/*
+* Declare variables for counter
+*/
+let counter=0;
+const counterSpan = document.querySelector('.moves');
+
+
+/*
+* Declare variables for timer
+*/
+let minClass = document.querySelector('.minutes');
+let secClass = document.querySelector('.seconds');
+var active = false; // keep track timer state
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
