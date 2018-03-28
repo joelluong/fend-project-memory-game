@@ -272,6 +272,31 @@ function congratulationPopUp()
     }
 }
 
+function startTimer ()
+{
+    if (active){
+        var min = minClass.innerHTML;
+        var sec = secClass.innerHTML;
+        if (sec == 59){
+            min++;
+            sec = 0;
+            if (min<10){
+                min ="0"+min;
+            }
+        } else{
+            sec++;
+            if (sec<10){
+                sec = "0"+sec;
+            }
+        }
+
+        // update html
+        minClass.innerHTML = min;
+        secClass.innerHTML = sec;
+        setTimeout(startTimer, 1000);   // keep repeating with speed of 1 second
+    }
+}
+
 
 /**
 * Event listener after the page loaed
