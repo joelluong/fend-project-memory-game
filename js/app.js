@@ -36,11 +36,11 @@ function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
   while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
   }
 
   return array;
@@ -60,9 +60,9 @@ function shuffleCards ()
   deck.innerHTML='';
   iElementCards = shuffle(iElementCards);
   for (let i=0;i<cards.length;i++){
-          cards[i].className = 'card';
-          cards[i].appendChild(iElementCards[i]);
-          deck.appendChild(cards[i]);
+    cards[i].className = 'card';
+    cards[i].appendChild(iElementCards[i]);
+    deck.appendChild(cards[i]);
   }
 }
 
@@ -116,7 +116,10 @@ for (let card of cards){
   card.addEventListener('click', function(){
     openCard(card);
 
-    compareSimilarity (card)
+    compareSimilarity (card);
+
+    // update stars in the html
+    displayStar(starRating(counter));
   });
 }
 
@@ -188,4 +191,27 @@ function starRating(pCounter){
         lStars = 0;
     }
     return lStars;
+}
+
+/**
+* @description Display start to html
+* @constructor
+* @param {int} pStars - number of stars
+*/
+function displayStar(pStars){
+  let stars = 3;
+  const starDiv = document.querySelector('.stars');
+  const htmlStar = '<li><i class="fa fa-star"></i></li>';
+  const htmlNoStar = '<li><i class="fa fa-star-o"></i></li>';
+  if (pStars === 3){
+    starDiv.innerHTML =htmlStar+htmlStar+htmlStar;
+  } else if (pStars === 2){
+    starDiv.innerHTML =htmlStar+htmlStar+htmlNoStar;
+  }
+  else if (pStars === 1){
+    starDiv.innerHTML =htmlStar+htmlNoStar+htmlNoStar;
+  }
+  else {
+    starDiv.innerHTML =htmlNoStar+htmlNoStar+htmlNoStar;
+  }
 }
