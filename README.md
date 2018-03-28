@@ -15,12 +15,8 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 
 ## Dependencies
 
-The project is cooperated with two library.
+The project is cooperated with two libraries.
 
-The first library is sweetalert2
+- The first library is sweetalert2. For details, check out [Sweet Alert 2](https://sweetalert2.github.io/).
 
-For details, check out [Sweet Alert 2](https://sweetalert2.github.io/).
-
-Another is Animate.css
-
-For details, check out [Animate.css](https://github.com/daneden/animate.css).
+- Another is Animate.css. For details, check out [Animate.css](https://github.com/daneden/animate.css).
