@@ -5,6 +5,11 @@
  let cards = document.querySelectorAll('.card');
  let iElementCards = new Array();
 
+/* adding i elements into an array */
+for (const card of cards){
+ iElementCards.push(card.firstElementChild);
+}
+
 /*
 * Create variable for class name to open and show card
 */
@@ -50,11 +55,6 @@ function shuffle(array) {
   return array;
 }
 
-/* adding i elements into an array */
-for (const card of cards){
-  iElementCards.push(card.firstElementChild);
-}
-
 /**
 * @description Shuffle cards and add into html
 * @constructor
@@ -70,13 +70,7 @@ function shuffleCards ()
   }
 }
 
-/**
-* Event listener after the page loaed
-*   - Shuffle cards
-*/
-document.addEventListener('DOMContentLoaded', function() {
-  shuffleCards ();
-}, false);
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -111,27 +105,6 @@ function closeCard(pCard)
   pCard.className = "card";
 }
 
-/**
-* Add event listener to the cards
-*   - Open cards
-*   - Check similarity
-*/
-for (let card of cards){
-  card.addEventListener('click', function(){
-  openCard(card);
-
-  compareSimilarity (card);
-
-  // update stars in the html
-  stars = starRating(counter);
-  displayStar(stars);
-
-  // the player won
-  setTimeout(function showCongratuation(){
-      congratulationPopUp();
-  }, 200);
-  });
-}
 
 /**
 * @description Compare similarity between cards
@@ -243,11 +216,6 @@ function restartGame () {
 
 }
 
-/* the restart button allow the player to reset the game */
-const restart = document.querySelector('.restart');
-restart.addEventListener('click', function(){
-  restartGame();
-});
 
 /**
 * @description show congratulation message using sweetalert2 library
@@ -275,7 +243,10 @@ function congratulationMessage()
     });
 }
 
-/* Show pop up congratulations */
+/**
+* @description congratulation pop up
+* @constructor
+*/
 function congratulationPopUp()
 {
     let checkAllCard = false;
@@ -291,4 +262,41 @@ function congratulationPopUp()
     {
         congratulationMessage();
     }
+}
+
+
+/**
+* Event listener after the page loaed
+*   - Shuffle cards
+*/
+document.addEventListener('DOMContentLoaded', function() {
+  shuffleCards ();
+}, false);
+
+/* the restart button allow the player to reset the game */
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function(){
+  restartGame();
+});
+
+/**
+* Add event listener to the cards
+*   - Open cards
+*   - Check similarity
+*/
+for (let card of cards){
+  card.addEventListener('click', function(){
+  openCard(card);
+
+  compareSimilarity (card);
+
+  // update stars in the html
+  stars = starRating(counter);
+  displayStar(stars);
+
+  // the player won
+  setTimeout(function showCongratuation(){
+      congratulationPopUp();
+  }, 200);
+  });
 }
