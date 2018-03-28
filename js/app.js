@@ -167,3 +167,25 @@ function compareSimilarity (pCard)
     }
   }
 }
+
+/**
+* @description Rating star
+* @constructor
+* @param {int} pCounter - counter moves
+*/
+function starRating(pCounter){
+    let lStars=0;
+    if (pCounter<=10){
+        lStars = 3;
+    }
+    else if (pCounter>10 && pCounter<=15) {
+        lStars = 2;
+    }
+    else if (pCounter>15 && pCounter<=20){
+        lStars = 1;
+    }
+    else{
+        lStars = 0;
+    }
+    return lStars;
+}
