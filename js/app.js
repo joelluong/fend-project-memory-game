@@ -28,6 +28,7 @@
   * Declare variables for counter
   */
  let counter=0;
+ const counterSpan = document.querySelector('.moves');
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -138,7 +139,6 @@ function compareSimilarity (pCard)
   if (openedCardList.length >= 2){    //  the list of open card has another list
     counter++;  // increment move counter
 
-    const counterSpan = document.querySelector('.moves');
     counterSpan.textContent = counter;      //update counter
 
     // check similarity between two cards
@@ -216,3 +216,26 @@ function displayStar(pStars){
     starDiv.innerHTML =htmlNoStar+htmlNoStar+htmlNoStar;
   }
 }
+
+/**
+* @description restart the game
+* - Shuffle the cards
+* - Set counter to 0 and display in html
+* - Set star to 3 and display in html
+* - Reset timer
+* @constructor
+*/
+function restartGame () {
+  shuffleCards ();
+  counter = 0;
+  stars = 3;
+  counterSpan.textContent = counter;
+  displayStar(stars);
+
+}
+
+/* the restart button allow the player to reset the game */
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function(){
+  restartGame();
+});
