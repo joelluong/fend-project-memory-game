@@ -5,17 +5,21 @@
  let cards = document.querySelectorAll('.card');
  let iElementCards = new Array();
 
- /*
-  * Create variable for class name to open and show card
-  */
+/*
+* Create variable for class name to open and show card
+*/
  const openClassName="open";
  const showClassName="show";
 
- /*
-  * Variable for the opened cards list
-  */
- let openedCardList = new Array();
+/*
+* Variable for the opened cards list
+*/
+let openedCardList = new Array();
 
+/*
+* Variable for stars
+*/
+let stars = 3;
 
 /*
  * Display the cards on the page
@@ -114,12 +118,18 @@ function closeCard(pCard)
 */
 for (let card of cards){
   card.addEventListener('click', function(){
-    openCard(card);
+  openCard(card);
 
-    compareSimilarity (card);
+  compareSimilarity (card);
 
-    // update stars in the html
-    displayStar(starRating(counter));
+  // update stars in the html
+  stars = starRating(counter);
+  displayStar(stars);
+
+  // the player won
+  setTimeout(function showCongratuation(){
+      congratulationPopUp();
+  }, 200);
   });
 }
 
@@ -200,7 +210,6 @@ function starRating(pCounter){
 * @param {int} pStars - number of stars
 */
 function displayStar(pStars){
-  let stars = 3;
   const starDiv = document.querySelector('.stars');
   const htmlStar = '<li><i class="fa fa-star"></i></li>';
   const htmlNoStar = '<li><i class="fa fa-star-o"></i></li>';
@@ -264,4 +273,22 @@ function congratulationMessage()
 
         }
     });
+}
+
+/* Show pop up congratulations */
+function congratulationPopUp()
+{
+    let checkAllCard = false;
+    for (const card of cards){
+        if (card.className !== "card match"){
+            checkAllCard = false;
+            break;
+        }
+        checkAllCard = true;
+    }
+
+    if (checkAllCard === true)
+    {
+        congratulationMessage();
+    }
 }
