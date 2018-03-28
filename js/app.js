@@ -5,6 +5,12 @@
  let cards = document.querySelectorAll('.card');
  let iElementCards = new Array();
 
+ /*
+  * Create variable for class name to open and show card
+  */
+ const openClassName="open";
+ const showClassName="show";
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
