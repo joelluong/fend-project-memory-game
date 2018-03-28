@@ -272,6 +272,10 @@ function congratulationPopUp()
     }
 }
 
+/**
+* @description start timer
+* @constructor
+*/
 function startTimer ()
 {
     if (active){
@@ -297,6 +301,16 @@ function startTimer ()
     }
 }
 
+
+/**
+* @description reset timer
+* @constructor
+*/
+function resetTimer(){
+    // update html
+    minClass.innerHTML = "00";
+    secClass.innerHTML = "00";
+}
 
 /**
 * Event listener after the page loaed
