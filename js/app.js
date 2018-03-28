@@ -27,6 +27,12 @@ function shuffle(array) {
     return array;
 }
 
+/* adding i elements into an array */
+for (const card of cards){
+    iElementCards.push(card.firstElementChild);
+}
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
