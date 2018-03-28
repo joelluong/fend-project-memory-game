@@ -301,7 +301,6 @@ function startTimer ()
     }
 }
 
-
 /**
 * @description reset timer
 * @constructor
@@ -310,6 +309,17 @@ function resetTimer(){
     // update html
     minClass.innerHTML = "00";
     secClass.innerHTML = "00";
+}
+
+/**
+* @description stop timer
+* @constructor
+*/
+function stopTimer()
+{
+  if (active === true){
+    active = false;
+  }
 }
 
 /**
@@ -342,7 +352,10 @@ document.addEventListener('DOMContentLoaded', function() {
   startGamePopup();
 }, false);
 
-/* the restart button allow the player to reset the game */
+
+/**
+* The restart button allow the player to reset the game
+*/
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', function(){
   restartGame();
