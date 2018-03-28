@@ -213,15 +213,18 @@ function displayStar(pStars){
 * - Set counter to 0 and display in html
 * - Set star to 3 and display in html
 * - Reset timer
+* - Restart pop up
 * @constructor
 */
 function restartGame () {
+  stopTimer();
   shuffleCards ();
   counter = 0;
   stars = 3;
   counterSpan.textContent = counter;
   displayStar(stars);
   resetTimer();
+  restartGamePopup();
 }
 
 
@@ -238,7 +241,7 @@ function congratulationMessage()
         title: 'Congratulations! You won!',
         html:
         `<p>With ${counter} moves and ${stars} stars</p>
-
+        <p>in ${minClass.innerHTML}:${secClass.innerHTML} minutes</p>
         </p>Woooooo!</p>`,
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Play again!'
@@ -246,7 +249,8 @@ function congratulationMessage()
     ).then((result) => {
         if (result.value) {
             restartGame();
-
+            active = true;
+            startTimer();
         }
     });
 }
@@ -269,6 +273,7 @@ function congratulationPopUp()
     if (checkAllCard === true)
     {
         congratulationMessage();
+        stopTimer();
     }
 }
 
@@ -306,9 +311,9 @@ function startTimer ()
 * @constructor
 */
 function resetTimer(){
-    // update html
-    minClass.innerHTML = "00";
-    secClass.innerHTML = "00";
+  // update html
+  minClass.innerHTML = "00";
+  secClass.innerHTML = "00";
 }
 
 /**
@@ -334,6 +339,28 @@ function startGamePopup()
       title: 'Welcome to Matching Game',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Start'
+  }
+  ).then((result) => {
+      if (result.value) {
+          active = true;
+          startTimer();
+      }
+  });
+}
+
+
+/**
+* @description Show pop up restart game
+* @constructor
+*/
+function restartGamePopup()
+{
+  // use sweetalert2 library
+  swal({
+      type: 'success',
+      title: 'Restart success',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'play'
   }
   ).then((result) => {
       if (result.value) {
