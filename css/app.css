@@ -81,6 +81,12 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.wrong{
+    background: #e74c3c;
+    cursor: default;
+    font-size: 33px;
+}
+
 /*
  * Styles for the Score Panel
  */

@@ -24,6 +24,13 @@
  *   - add each card's HTML to the page
  */
 
+ /*
+  * Declare variables for counter
+  */
+ const counterSpan = document.querySelector('.moves');
+ let counter=0;
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -44,6 +51,10 @@ for (const card of cards){
   iElementCards.push(card.firstElementChild);
 }
 
+/**
+* @description Shuffle cards and add into html
+* @constructor
+*/
 function shuffleCards ()
 {
   deck.innerHTML='';
@@ -55,6 +66,10 @@ function shuffleCards ()
   }
 }
 
+/**
+* Event listener after the page loaed
+*   - Shuffle cards
+*/
 document.addEventListener('DOMContentLoaded', function() {
   shuffleCards ();
 }, false);
@@ -69,19 +84,86 @@ document.addEventListener('DOMContentLoaded', function() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- function openCard (card)
+
+ /**
+* @description Open the cards
+* @constructor
+* @param {html element} pCard - The card of the deck
+*/
+ function openCard (pCard)
  {
-   card.classList.add(openClassName);
-   card.classList.add(showClassName);
- };
+   pCard.classList.add(openClassName);
+   pCard.classList.add(showClassName);
+ }
 
 
-var closeCard = function (card){
-  card.className = "card";
-};
+/**
+* @description Close the cards
+* @constructor
+* @param {html element} pCard - The card of the deck
+*/
+function closeCard(pCard)
+{
+  pCard.className = "card";
+}
 
+/**
+* Add event listener to the cards
+*   - Open cards
+*   - Check similarity
+*/
 for (let card of cards){
   card.addEventListener('click', function(){
     openCard(card);
+
+    compareSimilarity (card)
   });
+}
+
+/**
+* @description Compare similarity between cards
+* - Firsly, pusd new opened card to the opened card listener
+* - Then, increase and update counter
+* - Check similarity:
+*   + two cards are similar
+*   + two cards are not similar: add animation and hide the cards
+* @constructor
+* @param {html element} pCard - The card of the deck
+*/
+function compareSimilarity (pCard)
+{
+  openedCardList.push(pCard);      // add to the list
+  if (openedCardList.length >= 2){    //  the list of open card has another list
+    counter++;  // increment move counter
+    counterSpan.textContent = counter;      //update counter
+
+    // check similarity between two cards
+    if (openedCardList[0].firstElementChild.className === openedCardList[1].firstElementChild.className){
+      // the cards are same
+      openedCardList[0].className = "card match";
+      openedCardList[1].className = "card match";
+
+      // remove the card from the list
+      openedCardList.pop();
+      openedCardList.pop();
+    }
+    else{
+      // the cards are not same
+      // add animation
+      openedCardList[0].classList.add("animated");
+      openedCardList[0].classList.add("wobble");
+      openedCardList[0].classList.add("wrong");
+      openedCardList[1].classList.add("animated");
+      openedCardList[1].classList.add("wobble");
+      openedCardList[1].classList.add("wrong");
+
+      // hide the cards and remove from the list
+      setTimeout(function closeOpenedCards() {
+          closeCard(openedCardList[0]);
+          closeCard(openedCardList[1]);
+          openedCardList.pop();
+          openedCardList.pop();
+      }, 500);
+    }
+  }
 }
