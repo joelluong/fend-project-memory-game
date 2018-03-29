@@ -218,6 +218,10 @@ function displayStar(pStars){
 */
 function restartGame () {
   stopTimer();
+  while (openedCardList.length>0)
+  {
+    openedCardList.pop();
+  }
   shuffleCards ();
   counter = 0;
   stars = 3;
