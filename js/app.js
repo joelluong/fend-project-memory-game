@@ -139,8 +139,7 @@ function compareSimilarity (pCard)
       openedCardList[1].className = "card match";
 
       // remove the card from the list
-      openedCardList.pop();
-      openedCardList.pop();
+      removeCardsFromList(openedCardList);
     }
     else{
       // the cards are not same
@@ -156,8 +155,7 @@ function compareSimilarity (pCard)
       setTimeout(function closeOpenedCards() {
           closeCard(openedCardList[0]);
           closeCard(openedCardList[1]);
-          openedCardList.pop();
-          openedCardList.pop();
+          removeCardsFromList(openedCardList);
       }, 500);
     }
   }
@@ -218,10 +216,7 @@ function displayStar(pStars){
 */
 function restartGame () {
   stopTimer();
-  while (openedCardList.length>0)
-  {
-    openedCardList.pop();
-  }
+  removeCardsFromList(openedCardList);
   shuffleCards ();
   counter = 0;
   stars = 3;
@@ -229,6 +224,18 @@ function restartGame () {
   displayStar(stars);
   resetTimer();
   restartGamePopup();
+}
+
+/**
+* @description remove all cards from the list
+* @constructor
+*/
+function removeCardsFromList (array)
+{
+  while (array.length>0)
+  {
+    openedCardList.pop();
+  }
 }
 
 
@@ -399,17 +406,21 @@ restart.addEventListener('click', function(){
 */
 for (let card of cards){
   card.addEventListener('click', function(){
-  openCard(card);
+    // if cards havent opened and if length of openedCardList less than 2
+    // avoid user click multiple cards in short time
+    if (card.className === "card" && openedCardList.length < 2)
+    {
+      openCard(card);
+      compareSimilarity (card);
+    }
 
-  compareSimilarity (card);
+    // update stars in the html
+    stars = starRating(counter);
+    displayStar(stars);
 
-  // update stars in the html
-  stars = starRating(counter);
-  displayStar(stars);
-
-  // the player won
-  setTimeout(function showCongratuation(){
-      congratulationPopUp();
-  }, 200);
+    // the player won
+    setTimeout(function showCongratuation(){
+        congratulationPopUp();
+    }, 200);
   });
 }
