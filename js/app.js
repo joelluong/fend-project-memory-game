@@ -171,14 +171,11 @@ function starRating(pCounter){
     if (pCounter<=10){
         lStars = 3;
     }
-    else if (pCounter>10 && pCounter<=15) {
+    else if (pCounter>10 && pCounter<=16) {
         lStars = 2;
     }
-    else if (pCounter>15 && pCounter<=20){
-        lStars = 1;
-    }
     else{
-        lStars = 0;
+        lStars = 1;
     }
     return lStars;
 }
@@ -197,11 +194,8 @@ function displayStar(pStars){
   } else if (pStars === 2){
     starDiv.innerHTML =htmlStar+htmlStar+htmlNoStar;
   }
-  else if (pStars === 1){
+  else{
     starDiv.innerHTML =htmlStar+htmlNoStar+htmlNoStar;
-  }
-  else {
-    starDiv.innerHTML =htmlNoStar+htmlNoStar+htmlNoStar;
   }
 }
 
