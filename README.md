@@ -24,7 +24,6 @@ Each turn:
 - If the cards do not match, both cards are flipped face down.
 - The game ends once all cards have been correctly matched.
 
-![alt text](img/screenshot2.png)
 
 ## Dependencies
 
